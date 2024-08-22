@@ -1,6 +1,10 @@
+"use client"
+import { useSession } from 'next-auth/react'
 import React from 'react'
 
 export default function Header() {
+    const session=useSession()
+    console.log(session)
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">

@@ -1,5 +1,7 @@
 "use client";
+import axios from 'axios';
 import React from 'react'
+import toast from 'react-hot-toast';
 
 export default function Register() {
     const handelSubmitForm = async e => {
@@ -8,7 +10,18 @@ export default function Register() {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password,name);
+        const userInfo = { email, password, name }
+
+        try {
+            const data = await axios.post("http://localhost:3000/register/api", userInfo)
+            console.log(data.statusText)
+            if (data.status === 200) {
+                return  toast.success("create user successfull")
+            }
+        } catch (error) {
+            console.log(error)
+            return toast.error(error)
+        }
 
     }
     return (

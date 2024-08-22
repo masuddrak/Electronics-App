@@ -3,6 +3,9 @@ import "./globals.css";
 import Header from "@/components/Sheard/Header";
 import Footer from "@/components/Sheard/Footer";
 import AuthProvider from "@/Providers/AuthProvider";
+import toast, { Toaster } from 'react-hot-toast';
+
+const notify = () => toast('Here is your toast.');
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +19,15 @@ export default function RootLayout({ children }) {
     <html lang="en" >
       <body className={inter.className} suppressHydrationWarning={true}>
         <AuthProvider>
+        
           <Header></Header>
           <div className="container mx-auto my-4">
             {children}
           </div>
           <Footer></Footer>
+          <Toaster/>
         </AuthProvider>
+        
       </body>
     </html>
   );
